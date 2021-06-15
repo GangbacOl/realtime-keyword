@@ -128,7 +128,6 @@ class TrendCrawler extends Crawler {
             const xmlDoc = xmlToJson(parseXML(xmlString))
             const items = this.parseHotItems(xmlDoc)
             this.hotItems = items
-            console.log(this._getHotItems())
         } catch (err) {
             console.log(err)
         }
@@ -139,17 +138,23 @@ class TrendCrawler extends Crawler {
     
 }
 
-setInterval(async () => {
-    const crawler = new TrendCrawler()
+const crawler = new TrendCrawler()
+const init = async () => {
     console.log("hot items syncing")
     await crawler.setHotItems()
-    chrome.storage.local.set({'hotItems': crawler.getHotItems()}, function() {
-        console.log('hot items set to ' + JSON.stringify(crawler.getHotItems()))
-    });
+    chrome.storage.local.set({'hotItems': crawler.getHotItems()}, ()=>{});
+}
+init ()
+setInterval(async () => {
+    init()
 }, (60 * 3 * 1000));
 
 const checkItems = () => {
     chrome.storage.local.get(['hotItems'], function(result) {
         console.log('Value currently is ' + JSON.stringify(result))
     });
+}
+
+const checkTimeStamp = () => {
+    console.log(crawler._getTimeStamp())
 }
