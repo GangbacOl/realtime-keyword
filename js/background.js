@@ -139,14 +139,17 @@ class TrendCrawler extends Crawler {
     
 }
 
-
-const tester = async () => {
+setInterval(async () => {
     const crawler = new TrendCrawler()
     console.log("hot items syncing")
     await crawler.setHotItems()
     chrome.storage.local.set({'hotItems': crawler.getHotItems()}, function() {
         console.log('hot items set to ' + JSON.stringify(crawler.getHotItems()))
     });
-}
+}, (60 * 3 * 1000));
 
-tester()
+const checkItems = () => {
+    chrome.storage.local.get(['hotItems'], function(result) {
+        console.log('Value currently is ' + JSON.stringify(result))
+    });
+}
