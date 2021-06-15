@@ -172,7 +172,7 @@ const checkItems = () => {
 }
 
 class Tester {
-    checkTimeStamp = () => {
+    displayTimeStamp = () => {
         console.log(crawler._getTimeStamp())
     }
     
