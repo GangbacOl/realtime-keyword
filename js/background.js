@@ -57,7 +57,9 @@ function xmlToJson(xml) {
         }
     }
     return obj;
-}
+} 
+
+
 
 class Crawler {
     static isDownloading = false
@@ -105,6 +107,21 @@ class TrendCrawler extends Crawler {
         super("https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR")
     }
 
+    divideByDate = (items) => {
+        const today = (new Date()).getDay()
+        let dvidedData = { }
+        for (let key in Object.keys(items)) {
+            const itemDate = new Date(items[key].pubDate["#text"]).getDay()
+            const dvideKey = (today - itemDate).toString()
+            if (dvidedData[dvideKey] === undefined) {
+                dvidedData[dvideKey] = [items[key]]
+            } else {
+                dvidedData[dvideKey].push(items[key])
+            }
+        }
+        return dvidedData
+    } 
+
     _getText = async () => {
         const result = await this._request()
         if ( !result ) {
@@ -124,11 +141,13 @@ class TrendCrawler extends Crawler {
             const xmlString = await this._getText()
             const xmlDoc = xmlToJson(parseXML(xmlString))
             const items = this.parseHotItems(xmlDoc)
-            this.hotItems = items
+            this.hotItems = this.divideByDate(items)
         } catch (err) {
+            console.log("error occured")
             console.log(err)
         }
     }
+
     getHotItems = () => {
         return this.hotItems
     }
@@ -152,6 +171,33 @@ const checkItems = () => {
     });
 }
 
-const checkTimeStamp = () => {
-    console.log(crawler._getTimeStamp())
+class Tester {
+    checkTimeStamp = () => {
+        console.log(crawler._getTimeStamp())
+    }
+    
+    displayItems = () => {
+        chrome.storage.local.get(['hotItems'], function(result) {
+            console.log(result)
+        })
+    }
+
+    displayItemDays = () => {
+        chrome.storage.local.get(['hotItems'], function(result) {
+            console.log(result)
+            const hotItems = result.hotItems
+            console.log(hotItems)
+            console.log(Object.keys(hotItems))
+            
+            for (let dayAgo of Object.keys(hotItems) ) {
+                hotItems[dayAgo].forEach ( e=> {
+                    console.log(`${dayAgo}일 전`)
+                    console.log(e)
+                })
+            }
+        });
+    }
+     
 }
+
+const tester = new Tester()
