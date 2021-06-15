@@ -16,5 +16,8 @@
         "default_icon": "img/logo16.png",
         "default_popup": "html/popup.html"
     },
-    "permissions": ["storage"]
+    "permissions": [
+        "storage",
+        "*://trends.google.com/*"
+    ]
 }
