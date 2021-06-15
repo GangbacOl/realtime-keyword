@@ -65,8 +65,14 @@ class Crawler {
         this.TARGET_URL = target
     }
     TARGET_URL =  ""
-    recentReponse
+    recentResponse
     timeStamp = new Date()
+    _getTimeStamp = () => {
+        return this.timeStamp
+    }
+    _setTimeStamp = (timeStamp) => {
+        this.timeStamp = timeStamp
+    }
 
     _request = async () => { // return result
         const result = {}
@@ -99,6 +105,9 @@ class TrendCrawler extends Crawler {
         super("https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR")
     }
 
+    getHotItems = () => {
+        return this.hotItems
+    }
     _getText = async () => {
         const result = await this._request()
         if ( !result ) {
@@ -113,35 +122,31 @@ class TrendCrawler extends Crawler {
         return items
     }
 
-    syncHotItems = async () => {
+    setHotItems = async () => {
         try {
             const xmlString = await this._getText()
-            
+            const xmlDoc = xmlToJson(parseXML(xmlString))
+            const items = this.parseHotItems(xmlDoc)
+            this.hotItems = items
+            console.log(this._getHotItems())
         } catch (err) {
             console.log(err)
         }
     }
-    
-    storeData = (data) => {
-        try {
-            const stringData = JSON.stringify(data)
-            chrome.storage.sync.set({key: value}, function() {
-                console.log("recent timeStamp : ",this.timeStamp)
-            });
-        } catch (err) {
-            return { result: false }
-        }
+    getHotItems = () => {
+        return this.hotItems
     }
+    
 }
 
 
 const tester = async () => {
     const crawler = new TrendCrawler()
-    console.log(" crawling 시작 ")
-    console.log(crawler.timeStamp)
-    console.log(crawler)
-    
-    console.log ( xmlToJson(parseXML(await crawler._getXmlString()) ))
+    console.log("hot items syncing")
+    await crawler.setHotItems()
+    chrome.storage.local.set({'hotItems': crawler.getHotItems()}, function() {
+        console.log('hot items set to ' + JSON.stringify(crawler.getHotItems()))
+    });
 }
 
 tester()
