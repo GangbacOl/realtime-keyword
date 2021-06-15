@@ -105,9 +105,6 @@ class TrendCrawler extends Crawler {
         super("https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR")
     }
 
-    getHotItems = () => {
-        return this.hotItems
-    }
     _getText = async () => {
         const result = await this._request()
         if ( !result ) {
