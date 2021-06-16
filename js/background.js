@@ -109,17 +109,18 @@ class TrendCrawler extends Crawler {
 
     divideByDate = (items) => {
         const today = (new Date()).getDay()
-        let dvidedData = { }
+        let dividedDatas = [[]]
+        let dayAgo = 0
         for (let key in Object.keys(items)) {
             const itemDate = new Date(items[key].pubDate["#text"]).getDay()
-            const dvideKey = (today - itemDate).toString()
-            if (dvidedData[dvideKey] === undefined) {
-                dvidedData[dvideKey] = [items[key]]
+            const dvideIndex = (today - itemDate).toString()
+            if (dividedDatas.length <= dvideIndex) { 
+                dividedDatas.push([items[key]])
             } else {
-                dvidedData[dvideKey].push(items[key])
+                dividedDatas[dvideIndex].push(items[key])
             }
         }
-        return dvidedData
+        return dividedDatas
     } 
 
     _getText = async () => {
@@ -197,7 +198,11 @@ class Tester {
             }
         });
     }
-     
+    
+    setItems = () => {
+        crawler.setHotItems()
+        console.log("setted")
+    }
 }
 
 const tester = new Tester()
