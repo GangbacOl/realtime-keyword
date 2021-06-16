@@ -25,10 +25,10 @@ chrome.storage.local.get(['hotItems'], ({ hotItems }) => {
         wrapper.classList.add('list-item', 'not-open');
         title.innerText = item.title['#text'];
         title.onclick = () => handleCollapse(wrapper.classList);
-        thumbnail.src = item['ht:picture']['#text'];
-        link.href = item['ht:news_item'][0]['ht:news_item_url']['#text'];
-        link.innerText = item['ht:news_item'][0]['ht:news_item_title']['#text'];
-        author.innerText = item['ht:news_item'][0]['ht:news_item_source']['#text'];
+        thumbnail.src = item.picture['#text'];
+        link.href = item.news_items[0].url['#text'];
+        link.innerText = item.news_items[0].title['#text'];
+        author.innerText = item.news_items[0].source['#text'];
 
         description.appendChild(link);
         newsWrapper.append(thumbnail, description, author);
