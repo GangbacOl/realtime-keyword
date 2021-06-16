@@ -127,7 +127,7 @@ class TrendCrawler extends Crawler {
     }
 
 
-    filterKeys = (items, surviveKeys, keysChangeTo,test) => { // all those are array
+    filterKeys = (items, surviveKeys, keysChangeTo) => { // all those are array
         const newItems = []
         items.forEach(item => {
             const newItem = {}
