@@ -102,16 +102,63 @@ class TrendCrawler extends Crawler {
     
     parsedXml
     hotItems
-
+    surviveKeys = []
     constructor () {
         super("https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR")
+        this.surviveKeys = [
+            "title",
+            "ht:approx_traffic",
+            "description",
+            "pubDate",
+            "ht:picture",
+            "ht:news_item"
+        ]
+        this.keyChangeTo = {
+            "ht:approx_traffic":"traffic",
+            "ht:picture":"picture",
+            "ht:news_item":"news_items",
+        }
+        this.newsKeyChangeTo = {
+            "ht:news_item_title": "title",
+            "ht:news_item_url": "url",
+            "ht:news_item_source": "source"
+        }
+        this.MAX_NEWS_COUNT = 2
+    }
+
+
+    filterKeys = (items, surviveKeys, keysChangeTo,test) => { // all those are array
+        const newItems = []
+        items.forEach(item => {
+            const newItem = {}
+            surviveKeys.forEach(targetKey => {
+                newItem[targetKey] = item[targetKey]
+            })
+            const changeKey = (item,keysChangeTo) => {
+                for (let key of Object.keys(keysChangeTo)) {
+                    // custom
+                    let tmp = item[key]
+                    if ( key === "ht:news_item" && tmp !== null) {
+                        tmp = this.filterKeys(tmp,Object.keys(this.newsKeyChangeTo),this.newsKeyChangeTo,1)
+                    }
+                    delete item[key]
+                    item[keysChangeTo[key]] = tmp
+                }
+                
+                return item
+            }
+            
+            newItems.push(changeKey(newItem,keysChangeTo))
+        })
+
+        return newItems
     }
 
     divideByDate = (items) => {
         const today = (new Date()).getDay()
         let dividedDatas = [[]]
-        let dayAgo = 0
-        for (let key in Object.keys(items)) {
+        
+        for (let key of Object.keys(items)) {
             const itemDate = new Date(items[key].pubDate["#text"]).getDay()
             const dvideIndex = (today - itemDate).toString()
             if (dividedDatas.length <= dvideIndex) { 
@@ -141,7 +188,9 @@ class TrendCrawler extends Crawler {
         try {
             const xmlString = await this._getText()
             const xmlDoc = xmlToJson(parseXML(xmlString))
-            const items = this.parseHotItems(xmlDoc)
+            let items = this.parseHotItems(xmlDoc)
+            items = Object.values(items)
+            items = this.filterKeys(items,this.surviveKeys,this.keyChangeTo)
             this.hotItems = this.divideByDate(items)
         } catch (err) {
             console.log("error occured")
@@ -166,13 +215,8 @@ setInterval(async () => {
     init()
 }, (60 * 3 * 1000));
 
-const checkItems = () => {
-    chrome.storage.local.get(['hotItems'], function(result) {
-        console.log('Value currently is ' + JSON.stringify(result))
-    });
-}
-
 class Tester {
+
     displayTimeStamp = () => {
         console.log(crawler._getTimeStamp())
     }
