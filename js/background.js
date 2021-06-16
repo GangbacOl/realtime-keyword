@@ -139,6 +139,9 @@ class TrendCrawler extends Crawler {
                     // custom
                     let tmp = item[key]
                     if ( key === "ht:news_item" && tmp !== null) {
+                        if (!tmp.length) {
+                            tmp = [tmp]
+                        }
                         tmp = this.filterKeys(tmp,Object.keys(this.newsKeyChangeTo),this.newsKeyChangeTo,1)
                     }
                     delete item[key]
