@@ -39,27 +39,33 @@ body {
     font-size: 1rem;
     text-align: center;
 }
-.main-container .keyword-list {
+
+.main-container .keyword-container .date {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 5px 10px;
+}
+.main-container .keyword-container .keyword-list {
     width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto 20px auto;
 }
-.main-container .keyword-list .keyword {
+.main-container .keyword-container .keyword-list .keyword {
     width: 100%;
     overflow: hidden;
     margin: 5px 0;
     transition: all 0.1s;
 }
 
-.main-container .keyword-list .keyword.not-open {
+.main-container .keyword-container .keyword-list .keyword.not-open {
     height: 30px;
 }
-.main-container .keyword-list .keyword.is-open {
+.main-container .keyword-container .keyword-list .keyword.is-open {
     height: 100px;
 }
-.main-container .keyword-list .keyword h2 {
+.main-container .keyword-container .keyword-list .keyword h2 {
     font-size: 1.2rem;
     line-height: 25px;
     font-weight: 400;
@@ -68,19 +74,19 @@ body {
     border-bottom: 1px solid #e0e0e0;
     cursor: pointer;
 }
-.main-container .keyword-list .keyword div {
+.main-container .keyword-container .keyword-list .keyword div {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
-.main-container .keyword-list .keyword div img {
+.main-container .keyword-container .keyword-list .keyword div img {
     width: 68px;
     height: 68px;
     padding: 1px;
     margin-right: 10px;
 }
-.main-container .keyword-list .keyword div p {
+.main-container .keyword-container .keyword-list .keyword div p {
     width: calc(100% - 80px);
     white-space: normal;
     line-height: 1.2;
@@ -94,14 +100,14 @@ body {
     text-overflow: ellipsis;
     margin: 0 0 15px 0;
 }
-.main-container .keyword-list .keyword div p a {
+.main-container .keyword-container .keyword-list .keyword div p a {
     color: #4285f4;
     text-decoration-line: none;
 }
-.main-container .keyword-list .keyword div p a:hover {
+.main-container .keyword-container .keyword-list .keyword div p a:hover {
     text-decoration-line: underline;
 }
-.main-container .keyword-list .keyword div b {
+.main-container .keyword-container .keyword-list .keyword div b {
     position: absolute;
     right: 0;
     bottom: 0;
