@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap');
+html,
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
 body {
     background: rgb(255, 255, 255);
-    scrollbar-width: none;
-}
-body::-webkit-scrollbar {
-    display: none;
 }
 .root-container {
     width: 300px;
+    height: fit-content;
     padding: 5px;
 }
 
@@ -14,56 +16,72 @@ body::-webkit-scrollbar {
     width: 35px;
 }
 
+.root-container .read-more {
+    text-align: right;
+    cursor: pointer;
+    margin: 0;
+}
+.root-container .read-more:hover {
+    text-decoration: underline;
+}
+
 .main-container {
     width: 100%;
-    /* margin: 0 auto; */
+    height: 360px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.main-container::-webkit-scrollbar {
+    display: none;
+}
+.main-container .message {
+    font-size: 1rem;
+    text-align: center;
 }
 .main-container .list-container {
     width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
+    transition: all 0.3s;
 }
 .main-container .list-container .list-item {
+    width: 100%;
+    overflow: hidden;
+    margin: 5px 0;
     transition: all 0.2s;
+}
+
+.main-container .list-container .list-item.not-open {
+    height: 30px;
+}
+.main-container .list-container .list-item.is-open {
+    height: 100px;
 }
 .main-container .list-container .list-item h2 {
     font-size: 1.2rem;
+    line-height: 25px;
     font-weight: 400;
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0;
     color: #383838;
     border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
 }
-.main-container .list-container .list-item.not-open {
-    transition: all 0.2s;
-}
-.main-container .list-container .list-item.not-open div {
-    display: none;
-}
-.main-container .list-container > .list-item.is-open {
-    width: 100%;
-    text-align: left;
-    list-style: none;
-    margin: 15px 0;
-    transition: all 0.2s;
-}
-.main-container .list-container .list-item.is-open:last-child {
-    border: none;
-}
-.main-container .list-container .list-item.is-open div {
+.main-container .list-container .list-item div {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
-.main-container .list-container .list-item.is-open div img {
+.main-container .list-container .list-item div img {
     width: 68px;
     height: 68px;
+    padding: 1px;
     margin-right: 10px;
 }
-.main-container .list-container .list-item.is-open div p {
-    width: calc(100% - 78px);
+.main-container .list-container .list-item div p {
+    width: calc(100% - 80px);
     white-space: normal;
     line-height: 1.2;
     text-align: left;
@@ -76,14 +94,14 @@ body::-webkit-scrollbar {
     text-overflow: ellipsis;
     margin: 0 0 15px 0;
 }
-.main-container .list-container .list-item.is-open div p a {
+.main-container .list-container .list-item div p a {
     color: #4285f4;
     text-decoration-line: none;
 }
-.main-container .list-container .list-item.is-open div p a:hover {
+.main-container .list-container .list-item div p a:hover {
     text-decoration-line: underline;
 }
-.main-container .list-container .list-item.is-open div b {
+.main-container .list-container .list-item div b {
     position: absolute;
     right: 0;
     bottom: 0;
