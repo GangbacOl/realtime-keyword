@@ -11,12 +11,18 @@ const handleCollapse = (classList) => {
     }
 };
 
-const generateKeywordList = (keywords) => {
-    const keywordsWrapper = document.createElement('div');
+const generateDate = (passedDay) => {
     const date = document.createElement('h2');
-    keywordsWrapper.classList.add('list-container');
     date.classList.add('date');
-    console.log(new Date());
+    date.innerText = `${passedDay ? passedDay + '일 전' : '오늘'}`;
+    return date;
+};
+
+const generateKeywordList = (keywords, passedDay) => {
+    const keywordList = document.createElement('div');
+    keywordList.classList.add('keyword-list');
+
+    if (keywords.length < 1) mainContainer.append(generateDate(passedDay));
 
     keywords.forEach((keyword, idx) => {
         const wrapper = document.createElement('div');
@@ -27,7 +33,7 @@ const generateKeywordList = (keywords) => {
         const description = document.createElement('p');
         const author = document.createElement('b');
 
-        wrapper.classList.add('list-item', 'not-open');
+        wrapper.classList.add('keyword', 'not-open');
         title.innerText = keyword.title['#text'];
         title.onclick = () => handleCollapse(wrapper.classList);
         thumbnail.src = keyword.picture['#text'];
@@ -41,19 +47,18 @@ const generateKeywordList = (keywords) => {
         newsWrapper.append(thumbnail, description, author);
         wrapper.append(title, newsWrapper);
 
-        keywordsWrapper.appendChild(wrapper);
+        keywordList.appendChild(wrapper);
     });
-    mainContainer.appendChild(keywordsWrapper);
+    mainContainer.append(generateDate(passedDay), keywordList);
+    keywordList.classList.add('animation-init');
+    setTimeout(() => {
+        keywordList.classList.add('animation-fade');
+    }, 100);
 };
 
 chrome.storage.local.get(['hotItems'], ({ hotItems }) => {
-    let hotItemsIdx = 0;
-    const message = document.createElement('p');
     console.log(hotItems);
-
-    message.classList.add('message');
-    message.innerText = '아직 수집된 데이터가 없습니다!';
-    readMoreBtn.onclick = () => generateKeywordList(hotItems[++hotItemsIdx]);
-
-    mainContainer.appendChild(hotItems[0].length < 1 ? message : generateKeywordList(hotItems[hotItemsIdx]));
+    let hotItemsIdx = 0;
+    readMoreBtn.onclick = () => generateKeywordList(hotItems[++hotItemsIdx], hotItemsIdx);
+    generateKeywordList(hotItems[hotItemsIdx], hotItemsIdx);
 });
