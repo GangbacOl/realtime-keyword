@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "실시간 검색어",
     "version": "1.0",
-    "description": "실시간 서비스를 조회하는 크롬 확장 프로그램입니다.",
+    "description": "실시간 검색어를 조회하는 크롬 확장 프로그램입니다.",
     "background": {
         "scripts": ["./js/background.js"],
         "persistent": false
@@ -16,8 +16,5 @@
         "default_icon": "img/logo16.png",
         "default_popup": "html/popup.html"
     },
-    "permissions": [
-        "storage",
-        "*://trends.google.com/*"
-    ]
+    "permissions": ["storage", "*://trends.google.com/*"]
 }
