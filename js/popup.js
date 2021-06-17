@@ -19,7 +19,9 @@ const generateDate = (passedDay) => {
 };
 
 const generateKeywordList = (keywords, passedDay) => {
+    const keywordContainer = document.createElement('div');
     const keywordList = document.createElement('div');
+    keywordContainer.classList.add('keyword-container');
     keywordList.classList.add('keyword-list');
 
     if (keywords.length < 1) mainContainer.append(generateDate(passedDay));
@@ -49,7 +51,10 @@ const generateKeywordList = (keywords, passedDay) => {
 
         keywordList.appendChild(wrapper);
     });
-    mainContainer.append(generateDate(passedDay), keywordList);
+
+    keywordContainer.append(generateDate(passedDay), keywordList);
+    mainContainer.appendChild(keywordContainer);
+
     keywordList.classList.add('animation-init');
     setTimeout(() => {
         keywordList.classList.add('animation-fade');
