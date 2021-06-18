@@ -21,10 +21,11 @@ const generateDate = (passedDay) => {
 const generateKeywordList = (keywords, passedDay) => {
     const keywordContainer = document.createElement('div');
     const keywordList = document.createElement('div');
+    const message = document.createElement('p');
     keywordContainer.classList.add('keyword-container');
     keywordList.classList.add('keyword-list');
-
-    if (keywords.length < 1) mainContainer.append(generateDate(passedDay));
+    message.classList.add('message');
+    message.innerText = '아직 수집된 정보가 없습니다!';
 
     keywords.forEach((keyword, idx) => {
         const wrapper = document.createElement('div');
@@ -52,13 +53,21 @@ const generateKeywordList = (keywords, passedDay) => {
         keywordList.appendChild(wrapper);
     });
 
-    keywordContainer.append(generateDate(passedDay), keywordList);
+    keywordContainer.append(generateDate(passedDay), keywords.length > 0 ? keywordList : message);
     mainContainer.appendChild(keywordContainer);
 
-    keywordList.classList.add('animation-init');
-    setTimeout(() => {
-        keywordList.classList.add('animation-fade');
-    }, 100);
+    mainContainer.scrollTo({ top: keywordContainer.offsetTop - 15, left: 0, behavior: 'smooth' });
+
+    keywords.length > 0
+        ? keywordList.classList.add('animation-init')
+        : message.classList.add('animation-init');
+    keywords.length > 0
+        ? setTimeout(() => {
+              keywordList.classList.add('animation-fade');
+          }, 200)
+        : setTimeout(() => {
+              message.classList.add('animation-fade');
+          }, 200);
 };
 
 chrome.storage.local.get(['hotItems'], ({ hotItems }) => {
