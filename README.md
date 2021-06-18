@@ -3,10 +3,9 @@
 [Notion Link ✈](https://www.notion.so/b4a99f6816bd49a5a5e3d1bc6dd76f44)
 
 <p align="center">
-  <img src="./img/readme/image-1.png" width="60%">
-  <img src="./img/readme/image-2.png" width="60%">
-  <img src="./img/readme/image-3.png" width="60%">
-  <img src="./img/readme/image-4.png" width="60%">
+  <img src="./img/readme/readme-1.png" width="60%">
+  <img src="./img/readme/readme-2.png" width="60%">
+  <img src="./img/readme/readme-3.png" width="60%">
 </p>
 <br />
 
