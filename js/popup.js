@@ -71,8 +71,8 @@ const generateKeywordList = (keywords, passedDay) => {
 };
 
 chrome.storage.local.get(['hotItems'], ({ hotItems }) => {
-    console.log(hotItems);
     let hotItemsIdx = 0;
+
     readMoreBtn.onclick = () => generateKeywordList(hotItems[++hotItemsIdx], hotItemsIdx);
     generateKeywordList(hotItems[hotItemsIdx], hotItemsIdx);
 });
