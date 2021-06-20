@@ -167,14 +167,9 @@ class TrendCrawler extends Crawler {
     divideByDate = (items) => {
         const today = getEpochDate((new Date()))
         let dividedDatas = [[]]
-        let i = 0
         for (let key of Object.keys(items)) {
             const itemDate = getEpochDate(new Date(items[key].pubDate["#text"]))
             const divideIndex = (today - itemDate).toString()
-            console.log(`---------------------${i}---------------------`)
-            console.log(items[key])
-            console.log(`divideIndex : today(${today}) - itemDate(${itemDate})`)
-            i+=1
             
             if (dividedDatas.length <= divideIndex) { 
                 dividedDatas.push([items[key]])
