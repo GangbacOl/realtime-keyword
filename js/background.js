@@ -58,7 +58,13 @@ function xmlToJson(xml) {
     }
     return obj;
 } 
-
+const getEpochDate = (targetDay) => {
+    const standardDay = new Date('1970-01-01 00:00:00');
+    const res = Math.abs(standardDay - targetDay) / 1000;
+    console.log(res)
+    const betweens = Math.floor(res / 86400);
+    return betweens
+}
 
 
 class Crawler {
@@ -134,6 +140,7 @@ class TrendCrawler extends Crawler {
             surviveKeys.forEach(targetKey => {
                 newItem[targetKey] = item[targetKey]
             })
+            
             const changeKey = (item,keysChangeTo) => {
                 for (let key of Object.keys(keysChangeTo)) {
                     // custom
@@ -158,16 +165,21 @@ class TrendCrawler extends Crawler {
     }
 
     divideByDate = (items) => {
-        const today = (new Date()).getDay()
+        const today = getEpochDate((new Date()))
         let dividedDatas = [[]]
-        
+        let i = 0
         for (let key of Object.keys(items)) {
-            const itemDate = new Date(items[key].pubDate["#text"]).getDay()
-            const dvideIndex = (today - itemDate).toString()
-            if (dividedDatas.length <= dvideIndex) { 
+            const itemDate = getEpochDate(new Date(items[key].pubDate["#text"]))
+            const divideIndex = (today - itemDate).toString()
+            console.log(`---------------------${i}---------------------`)
+            console.log(items[key])
+            console.log(`divideIndex : today(${today}) - itemDate(${itemDate})`)
+            i+=1
+            
+            if (dividedDatas.length <= divideIndex) { 
                 dividedDatas.push([items[key]])
             } else {
-                dividedDatas[dvideIndex].push(items[key])
+                dividedDatas[divideIndex].push(items[key])
             }
         }
         return dividedDatas
