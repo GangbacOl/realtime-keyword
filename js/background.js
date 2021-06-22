@@ -1,3 +1,6 @@
+const standardDay = new Date('1970-01-01 00:00:00');
+
+
 function parseXML (data) {
     var xml, tmp;
     if (!data || typeof data !== "string") {
@@ -59,7 +62,6 @@ function xmlToJson(xml) {
     return obj;
 } 
 const getEpochDate = (targetDay) => {
-    const standardDay = new Date('1970-01-01 00:00:00');
     const res = Math.abs(standardDay - targetDay) / 1000;
     console.log(res)
     const betweens = Math.floor(res / 86400);
