@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "실시간 검색어를 조회하는 크롬 확장 프로그램입니다.",
   "background": {
-    "scripts": ["./js/background.js"],
+    "page": "./js/background/index.html",
     "persistent": true
   },
   "icons": {
