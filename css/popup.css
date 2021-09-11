@@ -1,123 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap");
 html,
 * {
-    font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 body {
-    background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
 }
 .root-container {
-    width: 300px;
-    height: fit-content;
-    padding: 5px;
+  width: 300px;
+  height: fit-content;
+  padding: 5px;
 }
 
 .header-container .logo {
-    width: 35px;
+  width: 35px;
 }
 
 .root-container .read-more {
-    text-align: right;
-    cursor: pointer;
-    margin: 0;
+  text-align: right;
+  cursor: pointer;
+  margin: 0;
 }
 .root-container .read-more:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .main-container {
-    width: 100%;
-    height: 360px;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    transition: all 0.3s;
+  width: 100%;
+  height: 360px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  transition: all 0.3s;
 }
 .main-container::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 .main-container .message {
-    font-size: 1rem;
-    text-align: center;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .main-container .keyword-container .date {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin: 5px 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 5px 10px;
 }
 .main-container .keyword-container .keyword-list {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 0 auto 20px auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto 20px auto;
 }
 .main-container .keyword-container .keyword-list .keyword {
-    width: 100%;
-    overflow: hidden;
-    margin: 5px 0;
-    transition: all 0.1s;
+  width: 100%;
+  overflow: hidden;
+  margin: 5px 0;
+  transition: all 0.1s;
 }
 
 .main-container .keyword-container .keyword-list .keyword.not-open {
-    height: 30px;
+  height: 30px;
 }
 .main-container .keyword-container .keyword-list .keyword.is-open {
-    height: 100px;
+  height: 100px;
 }
 .main-container .keyword-container .keyword-list .keyword h2 {
-    font-size: 1.2rem;
-    line-height: 25px;
-    font-weight: 400;
-    margin: 0 0 4px 0;
-    color: #383838;
-    border-bottom: 1px solid #e0e0e0;
-    cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 25px;
+  font-weight: 400;
+  margin: 0 0 4px 0;
+  color: #383838;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
 }
 .main-container .keyword-container .keyword-list .keyword div {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .main-container .keyword-container .keyword-list .keyword div img {
-    width: 68px;
-    height: 68px;
-    padding: 1px;
-    margin-right: 10px;
+  width: 68px;
+  height: 68px;
+  padding: 1px;
+  margin-right: 10px;
 }
 .main-container .keyword-container .keyword-list .keyword div p {
-    width: calc(100% - 80px);
-    white-space: normal;
-    line-height: 1.2;
-    text-align: left;
-    word-wrap: break-word;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    font-size: 0.9rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0 0 15px 0;
+  width: calc(100% - 80px);
+  white-space: normal;
+  line-height: 1.2;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 15px 0;
 }
 .main-container .keyword-container .keyword-list .keyword div p a {
-    color: #4285f4;
-    text-decoration-line: none;
+  color: #4285f4;
+  text-decoration-line: none;
 }
 .main-container .keyword-container .keyword-list .keyword div p a:hover {
-    text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 .main-container .keyword-container .keyword-list .keyword div b {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .animation-init {
-    opacity: 0;
-    padding-top: 1em;
+  opacity: 0;
+  padding-top: 1em;
 }
 .animation-fade {
-    opacity: 1;
-    padding-top: 0;
-    transition: all 0.4s;
+  opacity: 1;
+  padding-top: 0;
+  transition: all 0.4s;
 }
