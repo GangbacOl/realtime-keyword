@@ -1,12 +1,15 @@
 import Crawler from "./Crawler.js";
 import { xmlToJson, parseXML, getEpochDate } from "./utils.js";
 
+const KOREAN_TREND_RESOURCE_URL =
+  "https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR";
+
 class TrendCrawler extends Crawler {
   parsedXml;
   hotItems;
   surviveKeys = [];
   constructor() {
-    super("https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR");
+    super(KOREAN_TREND_RESOURCE_URL);
     this.surviveKeys = [
       "title",
       "ht:approx_traffic",
