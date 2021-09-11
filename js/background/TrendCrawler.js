@@ -1,5 +1,10 @@
 import Crawler from "./Crawler.js";
-import { xmlToJson, parseXML, getEpochDate } from "./utils.js";
+import {
+  xmlToJson,
+  parseXML,
+  getEpochDate,
+  getSelectedKeysFromObject,
+} from "./utils.js";
 
 const KOREAN_TREND_RESOURCE_URL =
   "https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR";
@@ -35,10 +40,7 @@ class TrendCrawler extends Crawler {
     // all those are array
     const newItems = [];
     items.forEach((item) => {
-      const newItem = {};
-      surviveKeys.forEach((targetKey) => {
-        newItem[targetKey] = item[targetKey];
-      });
+      const newItem = { ...getSelectedKeysFromObject(item, surviveKeys) };
 
       const changeKey = (item, keysChangeTo) => {
         for (let key of Object.keys(keysChangeTo)) {
@@ -93,7 +95,7 @@ class TrendCrawler extends Crawler {
     return text;
   };
 
-  parseHotItems = (xmlDoc) => {
+  _parseHotItems = (xmlDoc) => {
     const items = xmlDoc?.rss?.channel?.item;
     return items;
   };
@@ -102,7 +104,7 @@ class TrendCrawler extends Crawler {
     try {
       const xmlString = await this._getText();
       const xmlDoc = xmlToJson(parseXML(xmlString));
-      let items = this.parseHotItems(xmlDoc);
+      let items = this._parseHotItems(xmlDoc);
       items = Object.values(items);
       items = this.filterKeys(items, this.surviveKeys, this.keyChangeTo);
       this.hotItems = this.divideByDate(items);

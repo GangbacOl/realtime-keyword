@@ -32,14 +32,14 @@ export const parseXML = (data) => {
 export const xmlToJson = (xml) => {
   // Create the return object
   let obj = {};
-
   if (xml.nodeType == 1) {
     // element
     // do attributes
     if (xml.attributes.length > 0) {
+      // xml.attributes is not array
       obj["@attributes"] = {};
-      for (let j = 0; j < xml.attributes.length; j++) {
-        let attribute = xml.attributes.item(j);
+      for (let i = 0; i < xml.attributes.length; i++) {
+        let attribute = xml.attributes.item(i);
         obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
       }
     }
@@ -70,7 +70,15 @@ export const xmlToJson = (xml) => {
 
 export const getEpochDate = (targetDay) => {
   const res = Math.abs(STANDARD_DAY - targetDay) / 1000;
-  console.log(res);
   const betweens = Math.floor(res / 86400);
   return betweens;
+};
+
+export const getSelectedKeysFromObject = (currentObject, surviveKeys) => {
+  const newObj = {};
+  surviveKeys.forEach((targetKey) => {
+    newObj[targetKey] = currentObject[targetKey];
+  });
+
+  return newObj;
 };
