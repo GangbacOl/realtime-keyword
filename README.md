@@ -17,7 +17,7 @@
 </div>
 <br>
 
-[확장 프로그램 설치하러 가기]()
+[확장 프로그램 설치하러 가기](https://chrome.google.com/webstore/detail/실시간-검색어/ecmckjpdnmepdadhfoeihbjhcnaaigjm)
 
 ## [License](https://github.com/GangbacOl/realtime-keyword/blob/master/LICENSE)
 
