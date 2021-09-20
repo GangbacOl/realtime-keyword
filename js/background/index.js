@@ -1,4 +1,5 @@
 import TrendCrawler from "./TrendCrawler.js";
+import GoogleTrend from "./GoogleTrend.js";
 import Tester from "./Tester.js";
 
 const crawler = new TrendCrawler();
@@ -12,4 +13,5 @@ setInterval(async () => {
   init();
 }, 60 * 3 * 1000);
 
+const googleTrend = new GoogleTrend();
 const tester = new Tester();
