@@ -21,6 +21,8 @@ const generateDate = (passedDay) => {
 const validateParsingValue = (value, replacement) => (value ? value["#text"] : replacement);
 
 const generateKeywordList = (keywords, passedDay) => {
+  if (!keywords) return;
+
   const keywordContainer = document.createElement("div");
   const keywordList = document.createElement("div");
   const message = document.createElement("p");
@@ -72,7 +74,6 @@ const generateKeywordList = (keywords, passedDay) => {
 
 chrome.storage.local.get(["hotItems"], ({ hotItems }) => {
   let hotItemsIdx = 0;
-  console.log(hotItems);
   readMoreBtn.onclick = () => generateKeywordList(hotItems[++hotItemsIdx], hotItemsIdx);
   generateKeywordList(hotItems[hotItemsIdx], hotItemsIdx);
 });
