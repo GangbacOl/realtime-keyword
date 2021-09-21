@@ -6,6 +6,8 @@
 
 실시간 검색어 정보들은 [Google Trends](https://trends.google.com/)에서 제공되는 RSS 피드를 기반으로 하고 있으며, 1시간을 주기로 업데이트 됩니다.
 
+키워드는 최신순으로 최대 20개까지 제공됩니다.
+
 <div align="center">
   <img src="https://user-images.githubusercontent.com/49161970/132981372-0e9547f4-7873-4516-a4cd-06ff89ef1a03.png" width="30%">
   <img src="https://user-images.githubusercontent.com/49161970/132981373-4022cbf3-4562-48da-a423-9db9ec3f8bc9.png" width="30%">
