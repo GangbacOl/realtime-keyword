@@ -15,3 +15,5 @@ setInterval(async () => {
 
 const googleTrend = new GoogleTrend();
 const tester = new Tester();
+
+tester.displayGeos();

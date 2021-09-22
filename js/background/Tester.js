@@ -1,15 +1,21 @@
-class Tester {
-  displayTimeStamp = () => {
-    console.log(crawler._getTimeStamp());
-  };
+import GoogleTrend from "./GoogleTrend.js";
 
-  displayItems = () => {
+class Tester {
+  constructor() {
+    this.googleTrend = new GoogleTrend();
+  }
+
+  displayTimeStamp() {
+    console.log(crawler._getTimeStamp());
+  }
+
+  displayItems() {
     chrome.storage.local.get(["hotItems"], function (result) {
       console.log(result);
     });
-  };
+  }
 
-  displayItemDays = () => {
+  displayItemDays() {
     chrome.storage.local.get(["hotItems"], function (result) {
       console.log(result);
       const hotItems = result.hotItems;
@@ -23,12 +29,16 @@ class Tester {
         });
       }
     });
-  };
+  }
 
-  setItems = () => {
+  displayGeos() {
+    console.log(optionPanel.getGeoList());
+  }
+
+  setItems() {
     crawler.setHotItems();
     console.log("setted");
-  };
+  }
 }
 
 export default Tester;

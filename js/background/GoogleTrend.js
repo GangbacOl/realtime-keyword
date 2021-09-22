@@ -1,16 +1,12 @@
-const DAILY_POPULAR_URL =
-  "https://trends.google.com/trends/trendingsearches/daily?geo=KR";
+import { geoList } from "./constants.js";
 
-class GoogleTrend extends Crawler {
+class OptionPanel {
   constructor() {
-    super(DAILY_POPULAR_URL);
+    this.geoList = geoList;
   }
 
-  _getGeoSelector() {}
-
-  async getAbleGeos() {
-    const dailyPage = this._request();
-    console.log(dailyPage);
+  getGeoList() {
+    return this.geoList;
   }
 }
 
