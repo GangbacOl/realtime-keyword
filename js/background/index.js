@@ -17,3 +17,5 @@ const tester = new Tester();
 
 tester.displayGeos();
 tester.displayCurrentGeoSetting();
+tester.setGeo({ id: "KR", name: "대한민국" });
+tester.displayCurrentGeoSetting();

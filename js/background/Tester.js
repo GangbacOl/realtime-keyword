@@ -39,6 +39,10 @@ class Tester {
     console.log(await this.geoOptionPanel.getCurrentGeoSetting());
   }
 
+  async setGeo(geo) {
+    console.log(await this.geoOptionPanel.setGeoSetting(geo));
+  }
+
   setItems() {
     crawler.setHotItems();
     console.log("setted");
