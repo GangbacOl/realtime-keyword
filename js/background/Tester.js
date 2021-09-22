@@ -1,8 +1,8 @@
-import GoogleTrend from "./GoogleTrend.js";
+import OptionPanel from "./OptionPanel.js";
 
 class Tester {
   constructor() {
-    this.googleTrend = new GoogleTrend();
+    this.optionPanel = new OptionPanel();
   }
 
   displayTimeStamp() {
