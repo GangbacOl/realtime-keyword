@@ -1,5 +1,5 @@
 import TrendCrawler from "./TrendCrawler.js";
-import OptionPanel from "./OptionPanel.js";
+import GeoOptionPanel from "./GeoOptionPanel.js";
 import Tester from "./Tester.js";
 
 const crawler = new TrendCrawler();
@@ -13,7 +13,7 @@ setInterval(async () => {
   init();
 }, 60 * 3 * 1000);
 
-const optionPanel = new OptionPanel();
 const tester = new Tester();
 
 tester.displayGeos();
+tester.displayCurrentGeoSetting();

@@ -1,8 +1,8 @@
-import OptionPanel from "./OptionPanel.js";
+import GeoOptionPanel from "./GeoOptionPanel.js";
 
 class Tester {
   constructor() {
-    this.optionPanel = new OptionPanel();
+    this.geoOptionPanel = new GeoOptionPanel();
   }
 
   displayTimeStamp() {
@@ -32,7 +32,11 @@ class Tester {
   }
 
   displayGeos() {
-    console.log(optionPanel.getGeoList());
+    console.log(this.geoOptionPanel.getGeoList());
+  }
+
+  async displayCurrentGeoSetting() {
+    console.log(await this.geoOptionPanel.getCurrentGeoSetting());
   }
 
   setItems() {
