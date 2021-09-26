@@ -1,4 +1,5 @@
 import TrendCrawler from "./TrendCrawler.js";
+import GeoOptionPanel from "./GeoOptionPanel.js";
 import Tester from "./Tester.js";
 
 const crawler = new TrendCrawler();
@@ -13,3 +14,8 @@ setInterval(async () => {
 }, 60 * 3 * 1000);
 
 const tester = new Tester();
+
+tester.displayGeos();
+tester.displayCurrentGeoSetting();
+tester.setGeo({ id: "KR", name: "대한민국" });
+tester.displayCurrentGeoSetting();

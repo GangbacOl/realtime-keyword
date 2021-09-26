@@ -1,15 +1,21 @@
-class Tester {
-  displayTimeStamp = () => {
-    console.log(crawler._getTimeStamp());
-  };
+import GeoOptionPanel from "./GeoOptionPanel.js";
 
-  displayItems = () => {
+class Tester {
+  constructor() {
+    this.geoOptionPanel = new GeoOptionPanel();
+  }
+
+  displayTimeStamp() {
+    console.log(crawler._getTimeStamp());
+  }
+
+  displayItems() {
     chrome.storage.local.get(["hotItems"], function (result) {
       console.log(result);
     });
-  };
+  }
 
-  displayItemDays = () => {
+  displayItemDays() {
     chrome.storage.local.get(["hotItems"], function (result) {
       console.log(result);
       const hotItems = result.hotItems;
@@ -23,12 +29,24 @@ class Tester {
         });
       }
     });
-  };
+  }
 
-  setItems = () => {
+  displayGeos() {
+    console.log(this.geoOptionPanel.getGeoList());
+  }
+
+  async displayCurrentGeoSetting() {
+    console.log(await this.geoOptionPanel.getCurrentGeoSetting());
+  }
+
+  async setGeo(geo) {
+    console.log(await this.geoOptionPanel.setGeoSetting(geo));
+  }
+
+  setItems() {
     crawler.setHotItems();
     console.log("setted");
-  };
+  }
 }
 
 export default Tester;
