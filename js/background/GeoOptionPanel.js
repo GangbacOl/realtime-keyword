@@ -1,9 +1,9 @@
-import { geoList } from "./constants.js";
+import { geoList, GEO_OPTION_KEY } from "./constants.js";
 
 class GeoOptionPanel {
   constructor() {
     this.geoList = geoList;
-    this.geoOptionKey = "geoSetting";
+    this.geoOptionKey = GEO_OPTION_KEY;
   }
 
   getGeoList() {
