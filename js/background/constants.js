@@ -48,3 +48,5 @@ export const geoList = [
   { id: "HU", name: "헝가리" },
   { id: "HK", name: "홍콩" },
 ];
+
+export const PORT_NAME = "POPUP_BACKGROUND"
