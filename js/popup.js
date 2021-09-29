@@ -18,7 +18,8 @@ const generateDate = (passedDay) => {
   return date;
 };
 
-const validateParsingValue = (value, replacement) => (value ? value["#text"] : replacement);
+const validateParsingValue = (value, replacement) =>
+  value ? value["#text"] : replacement;
 
 const generateKeywordList = (keywords, passedDay) => {
   if (!keywords) return;
@@ -43,7 +44,10 @@ const generateKeywordList = (keywords, passedDay) => {
     wrapper.classList.add("keyword", "not-open");
     title.innerText = validateParsingValue(keyword.title, null);
     title.onclick = () => handleCollapse(wrapper.classList);
-    thumbnail.src = validateParsingValue(keyword.picture, "../img/assets/notfound.png");
+    thumbnail.src = validateParsingValue(
+      keyword.picture,
+      "../img/assets/notfound.png"
+    );
     link.href = validateParsingValue(keyword.news_items[0].url, null);
     link.target = "_blank";
     link.innerHTML = validateParsingValue(keyword.news_items[0].title, null);
@@ -57,12 +61,21 @@ const generateKeywordList = (keywords, passedDay) => {
     keywordList.appendChild(wrapper);
   });
 
-  keywordContainer.append(generateDate(passedDay), keywords.length > 0 ? keywordList : message);
+  keywordContainer.append(
+    generateDate(passedDay),
+    keywords.length > 0 ? keywordList : message
+  );
   mainContainer.appendChild(keywordContainer);
 
-  mainContainer.scrollTo({ top: keywordContainer.offsetTop - 15, left: 0, behavior: "smooth" });
+  mainContainer.scrollTo({
+    top: keywordContainer.offsetTop - 15,
+    left: 0,
+    behavior: "smooth",
+  });
 
-  keywords.length > 0 ? keywordList.classList.add("animation-init") : message.classList.add("animation-init");
+  keywords.length > 0
+    ? keywordList.classList.add("animation-init")
+    : message.classList.add("animation-init");
   keywords.length > 0
     ? setTimeout(() => {
         keywordList.classList.add("animation-fade");
@@ -74,6 +87,7 @@ const generateKeywordList = (keywords, passedDay) => {
 
 chrome.storage.local.get(["hotItems"], ({ hotItems }) => {
   let hotItemsIdx = 0;
-  readMoreBtn.onclick = () => generateKeywordList(hotItems[++hotItemsIdx], hotItemsIdx);
+  readMoreBtn.onclick = () =>
+    generateKeywordList(hotItems[++hotItemsIdx], hotItemsIdx);
   generateKeywordList(hotItems[hotItemsIdx], hotItemsIdx);
 });

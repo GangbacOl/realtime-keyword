@@ -1,5 +1,4 @@
 import GeoOptionPanel from "./GeoOptionPanel.js";
-import { PORT_NAME } from "./constants.js";
 
 class Tester {
   constructor() {
@@ -42,10 +41,6 @@ class Tester {
 
   async setGeo(geo) {
     console.log(await this.geoOptionPanel.setGeoSetting(geo));
-  }
-
-  async helloToPopupToBackgroundPort() {
-    let port = chrome.runtime.connect({ name: PORT_NAME });
   }
 
   setItems() {

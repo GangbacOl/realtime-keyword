@@ -1,5 +1,5 @@
 import TrendCrawler from "./TrendCrawler.js";
-import portRouter from './portRouter/index.js'
+import portRouter from "./portRouter/index.js";
 import Tester from "./Tester.js";
 
 const crawler = new TrendCrawler();
@@ -15,8 +15,7 @@ setInterval(async () => {
 
 const tester = new Tester();
 
-
-chrome.runtime.onConnect.addListener(portRouter)
+chrome.runtime.onConnect.addListener(portRouter);
 
 tester.displayGeos();
 tester.displayCurrentGeoSetting();

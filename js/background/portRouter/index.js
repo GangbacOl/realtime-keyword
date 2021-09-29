@@ -1,7 +1,8 @@
 import { PORT_NAME } from "../constants.js";
+import ptbRouter from "./popupToBackground.js";
 
 const portRouter = async (port) => {
-  const portName = msg.name;
+  const portName = port.name;
 
   switch (portName) {
     case PORT_NAME:
